@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+
+  node:
+    container_name: homework_node
+    image: "node:lts"
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      NODE_ENV: $NODE_ENV
+      PORT: 3000
+    volumes:
+      - ./:/home/node/app
+    ports:
+      - 3000:3000
+    command: bash -c "npm run build && npm run migration:run && npm run start:dev"
+
+  postgres:
+    container_name: homework_postgres
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: $DATABASE_USER
+      POSTGRES_PASSWORD: $DATABASE_PASSWORD
+      POSTGRES_DB: $DATABASE_NAME
+    ports:
+      - "5432:5432"
+
+  adminer:
+    container_name: homework_adminer
+    image: adminer
+    restart: always
+    depends_on:
+      - postgres
+    ports:
+      - 8080:8080

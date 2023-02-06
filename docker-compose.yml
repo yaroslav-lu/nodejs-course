@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  postgres:
+    container_name: homework_postgres
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: $DATABASE_USER
+      POSTGRES_PASSWORD: $DATABASE_PASSWORD
+      POSTGRES_DB: $DATABASE_NAME
+    ports:
+      - "5432:5432"
+
+  adminer:
+    container_name: homework_adminer
+    image: adminer
+    restart: always
+    depends_on:
+      - postgres
+    ports:
+      - 8080:8080
