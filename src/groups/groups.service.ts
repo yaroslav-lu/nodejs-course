@@ -84,8 +84,6 @@ export class GroupsService {
       queryRunner.commitTransaction();
     } catch (error) {
       queryRunner.rollbackTransaction();
-    } finally {
-      queryRunner.release();
     }
 
     return group;

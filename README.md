@@ -12,6 +12,8 @@ $ npm install
 
 #### Running app only with database containers
 
+Update DATABASE_HOST=localhost in .env file.
+
 ```bash
 # Start docker with db and adminer.
 $ docker-compose up -d

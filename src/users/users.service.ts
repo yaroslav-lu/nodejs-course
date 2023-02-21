@@ -30,14 +30,15 @@ export class UsersService {
 
   findAll(paginationQuery: PaginationUserQueryDto) {
     const { limit, loginSubstring } = paginationQuery;
-    const options: FindManyOptions<User> = {
+    let options: FindManyOptions<User> = {
       take: limit,
       relations: {
         groups: true,
       },
     };
+
     if (loginSubstring) {
-      options.where['login'] = Like(`%${loginSubstring}%`);
+      options = { ...options, where: { login: Like(`%${loginSubstring}%`) } };
     }
     return this.userRepository.find(options);
   }
