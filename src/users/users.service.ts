@@ -51,6 +51,10 @@ export class UsersService {
     return user;
   }
 
+  async findOneByLogin(login: string) {
+    return await this.userRepository.findOneBy({ login });
+  }
+
   async update(id: string, updateUserDto: UpdateUserDto) {
     const groups =
       updateUserDto.groups &&

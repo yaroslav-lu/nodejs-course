@@ -16,12 +16,14 @@ async function bootstrap() {
       },
     }),
   );
+  app.enableCors();
 
   // Setting up Swagger.
   const options = new DocumentBuilder()
     .setTitle('Homework')
     .setDescription('Homework application')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, options);

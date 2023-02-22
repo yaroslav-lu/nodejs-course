@@ -10,6 +10,7 @@ import databaseConfig from './config/database.config';
 import { LoggingMiddleware } from './common/middleware/logging/logging.middleware';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { LoggingInterceptor } from './common/interceptors/logging/logging.interceptor';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { LoggingInterceptor } from './common/interceptors/logging/logging.interc
     }),
     UsersModule,
     GroupsModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [
